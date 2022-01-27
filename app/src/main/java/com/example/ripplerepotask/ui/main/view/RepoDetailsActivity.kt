@@ -17,6 +17,8 @@ class RepoDetailsActivity : AppCompatActivity() {
         binding = ActivityRepoDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         var repoName : String? = intent.getStringExtra("name")
         var repoDesc : String? = intent.getStringExtra("desc")
         var avatarURL : String? = intent.getStringExtra("avatar_url")
@@ -24,6 +26,9 @@ class RepoDetailsActivity : AppCompatActivity() {
 
 
         binding.apply {
+
+            setSupportActionBar(toolbar)
+
             Glide.with(applicationContext)
                 .load(avatarURL)
                 .transition(DrawableTransitionOptions.withCrossFade())
@@ -32,14 +37,17 @@ class RepoDetailsActivity : AppCompatActivity() {
             tvRepoNameInput.text = repoName
             tvRepoDescInput.text = repoDesc
 
-            btnBack.setOnClickListener {
-                val intent = Intent(this@RepoDetailsActivity,MainActivity::class.java)
-                startActivity(intent)
-            }
         }
 
+        val actionbar = supportActionBar
 
+        actionbar?.title = "Repository Details"
+        actionbar?.setDisplayHomeAsUpEnabled(true)
 
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
