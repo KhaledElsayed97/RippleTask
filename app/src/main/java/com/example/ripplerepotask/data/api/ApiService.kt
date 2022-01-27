@@ -13,7 +13,7 @@ interface ApiService {
     }
 
     @GET("search/repositories")
-    @Headers("Authorization: token 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")
+    //@Headers("Authorization: token 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")
     fun getDataFromApi(
         @Query("q") query: String
     ): Call<RepoResponse>
