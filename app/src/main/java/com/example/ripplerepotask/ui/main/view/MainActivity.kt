@@ -8,6 +8,8 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ripplerepotask.databinding.ActivityMainBinding
 import com.example.ripplerepotask.databinding.ActivityRepoDetailsBinding
+import com.example.ripplerepotask.databinding.FragmentRecyclerViewBinding
+import com.example.ripplerepotask.databinding.FragmentRepoDetailsBinding
 import com.example.ripplerepotask.ui.main.adapter.MainAdapter
 import com.example.ripplerepotask.ui.main.viewmodel.MainViewModel
 import org.koin.android.ext.android.inject
@@ -34,26 +36,26 @@ class MainActivity: AppCompatActivity() {
 
     private fun setupUI(){
 
-        //adapter = MainAdapter()
         adapter.notifyDataSetChanged()
-        //viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+
+//        bindingRVFragment.apply {
+//            rvRepo.layoutManager = LinearLayoutManager(this@MainActivity)
+//            rvRepo.setHasFixedSize(true)
+//            rvRepo.adapter = adapter
+//
+//            adapter.onItemClick = { repository ->
+//
+//                val intent = Intent(this@MainActivity, RepoDetailsActivity::class.java)
+//                intent.putExtra("name", repository.name)
+//                intent.putExtra("desc", repository.description)
+//                intent.putExtra("avatar_url", repository.owner.avatar_url)
+//                startActivity(intent)
+//
+//                //Log.d("TAG",repository.name)
+//            }
+//        }
 
         binding.apply {
-            rvRepo.layoutManager = LinearLayoutManager(this@MainActivity)
-            rvRepo.setHasFixedSize(true)
-            rvRepo.adapter = adapter
-
-            adapter.onItemClick= { repository ->
-
-                val intent = Intent(this@MainActivity, RepoDetailsActivity::class.java)
-                intent.putExtra("name",repository.name)
-                intent.putExtra("desc",repository.description)
-                intent.putExtra("avatar_url",repository.owner.avatar_url)
-                startActivity(intent)
-
-                //Log.d("TAG",repository.name)
-            }
-
             btnSearch.setOnClickListener{
                 searchRepo()
             }
