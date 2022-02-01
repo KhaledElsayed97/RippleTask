@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ripplerepotask.R
 import com.example.ripplerepotask.databinding.ActivityMainBinding
@@ -20,7 +21,6 @@ import org.koin.android.ext.android.inject
 
 class RecyclerViewFragment : Fragment() {
 
-    private lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var binding : FragmentRecyclerViewBinding
     private val  adapter : MainAdapter by inject()
     private val viewModel : MainViewModel by inject()
@@ -37,15 +37,13 @@ class RecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-
         setupUI()
 
         setupObserver()
     }
 
     private fun setupUI(){
-        adapter.notifyDataSetChanged()
+        //adapter.notifyDataSetChanged()
 
         binding.apply {
             rvRepo.layoutManager = LinearLayoutManager(context)
@@ -54,14 +52,13 @@ class RecyclerViewFragment : Fragment() {
 
             adapter.onItemClick = { repository ->
 
-                setFragmentResult("nameKey", bundleOf("repoName" to repository.name))
-                setFragmentResult("descKey", bundleOf("repoDesc" to repository.description))
-                setFragmentResult("imageKey", bundleOf("repoImage" to repository.owner.avatar_url))
+                val action = RecyclerViewFragmentDirections.nextAction(
+                    repository.name,
+                    repository.description,
+                    repository.owner.avatar_url
+                )
 
-                val transaction = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(activityMainBinding.flFragment.id, RepoDetailsFragment())
-                transaction?.addToBackStack(null)
-                transaction?.commit()
+               findNavController().navigate(action)
             }
 
 

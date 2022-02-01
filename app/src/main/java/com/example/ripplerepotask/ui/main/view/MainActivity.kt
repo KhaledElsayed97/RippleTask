@@ -1,11 +1,15 @@
 package com.example.ripplerepotask.ui.main.view
 
 import android.content.Intent
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ripplerepotask.databinding.ActivityMainBinding
 import com.example.ripplerepotask.databinding.FragmentRecyclerViewBinding
@@ -22,11 +26,6 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(binding.flFragment.id, RecyclerViewFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
 
     }
 

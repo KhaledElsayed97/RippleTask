@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.ripplerepotask.R
@@ -16,6 +17,7 @@ import com.example.ripplerepotask.databinding.FragmentRepoDetailsBinding
 class RepoDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentRepoDetailsBinding
+    val args : RepoDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,21 +31,14 @@ class RepoDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setFragmentResultListener("nameKey") { requestKey, bundle ->
-            val repoName = bundle.getString("repoName")
-            binding.tvRepoNameInput.text = repoName
-        }
-        setFragmentResultListener("descKey") { requestKey, bundle ->
-            val repoDesc = bundle.getString("repoDesc")
-            binding.tvRepoDescInput.text = repoDesc
-        }
-        setFragmentResultListener("imageKey") { requestKey, bundle ->
-            val repoImage = bundle.getString("repoImage")
-            Glide.with(this)
-                .load(repoImage)
+        binding.apply {
+            tvRepoNameInput.text = args.repoName.toString()
+            tvRepoDescInput.text = args.repoDesc.toString()
+            Glide.with(view)
+                .load(args.repoImage.toString())
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .into(binding.ivRepoF)
+                .into(ivRepoF)
+        }
         }
     }
     
-}
