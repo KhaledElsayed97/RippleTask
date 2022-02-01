@@ -32,10 +32,10 @@ class RepoDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            tvRepoNameInput.text = args.repoName.toString()
-            tvRepoDescInput.text = args.repoDesc.toString()
+            tvRepoNameInput.text = args.repoName
+            tvRepoDescInput.text = args.repoDesc
             Glide.with(view)
-                .load(args.repoImage.toString())
+                .load(args.repoImage)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivRepoF)
         }
