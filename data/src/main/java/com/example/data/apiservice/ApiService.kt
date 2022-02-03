@@ -1,6 +1,6 @@
-package com.example.ripplerepotask.data.api
+package com.example.data.apiservice
 
-import com.example.ripplerepotask.data.model.RepoResponse
+import com.example.domain.models.RepoResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

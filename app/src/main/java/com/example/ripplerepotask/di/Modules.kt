@@ -1,12 +1,14 @@
 package com.example.ripplerepotask.data.model
 
-import com.example.ripplerepotask.data.api.ApiServiceImpl
-import com.example.ripplerepotask.data.repository.MainRepository
+import com.example.data.di.ApiServiceImpl
+import com.example.data.repo.RemoteRepoImpl
+import com.example.domain.models.Owner
+import com.example.domain.models.RepoResponse
+import com.example.domain.models.Repository
 import com.example.ripplerepotask.ui.main.adapter.MainAdapter
 import com.example.ripplerepotask.ui.main.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import retrofit2.Response
 
 val repositoryResponseModule = module {
 
@@ -26,7 +28,7 @@ val adapterModule = module {
 val retrofitBuilderModule = module{
     single{ ApiServiceImpl() }
 
-    single { MainRepository(get()) }
+    single { RemoteRepoImpl(get()) }
 
     viewModel{ MainViewModel(get()) }
 }

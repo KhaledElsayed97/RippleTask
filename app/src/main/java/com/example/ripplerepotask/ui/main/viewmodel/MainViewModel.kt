@@ -4,23 +4,23 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ripplerepotask.data.api.ApiService
-import com.example.ripplerepotask.data.model.RepoResponse
-import com.example.ripplerepotask.data.model.Repository
-import com.example.ripplerepotask.data.repository.MainRepository
+import com.example.data.repo.RemoteRepoImpl
+import com.example.domain.models.RepoResponse
+import com.example.domain.models.Repository
+import com.example.domain.usecases.GetReposUseCase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class  MainViewModel constructor(private val mainRepository: MainRepository): ViewModel() {
+class  MainViewModel constructor(val remoteRepoImpl: RemoteRepoImpl): ViewModel() {
 
     val listRepo = MutableLiveData<ArrayList<Repository>>()
 
     fun setSearchRepos(query: String){
 //        apiService
 //            .getDataFromApi(query)
-        mainRepository
+        remoteRepoImpl
             .getRepos(query)
             .enqueue(object : Callback<RepoResponse>{
                 override fun onResponse(

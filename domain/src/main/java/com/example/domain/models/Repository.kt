@@ -1,7 +1,6 @@
-package com.example.ripplerepotask.data.model
+package com.example.domain.models
 
 data class RepoResponse(
-
     val items: ArrayList<Repository>
 )
 
