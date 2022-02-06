@@ -8,6 +8,8 @@ import com.example.data.repo.RemoteRepoImpl
 import com.example.domain.models.RepoResponse
 import com.example.domain.models.Repository
 import com.example.domain.usecases.GetReposUseCase
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.subscribeBy
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,31 +17,21 @@ import retrofit2.Response
 
 class  MainViewModel constructor(val remoteRepoImpl: RemoteRepoImpl): ViewModel() {
 
-    val listRepo = MutableLiveData<ArrayList<Repository>>()
+    val listRepo = MutableLiveData<List<Repository>>()
 
     fun setSearchRepos(query: String){
-//        apiService
-//            .getDataFromApi(query)
-        remoteRepoImpl
+        var listObservables:Observable<List<Repository>> = remoteRepoImpl
             .getRepos(query)
-            .enqueue(object : Callback<RepoResponse>{
-                override fun onResponse(
-                    call: Call<RepoResponse>,
-                    response: Response<RepoResponse>
-                ) {
-                    if(response.isSuccessful){
-                        listRepo.postValue(response.body()?.items)
-                    }
-                }
 
-                override fun onFailure(call: Call<RepoResponse>, t: Throwable) {
-                    t.message?.let { Log.d("Failure", it) }
-                }
+        listObservables.subscribe({value -> listRepo.postValue(value)},
+            {error -> Log.d("error","error")},
+            {Log.d("Completed","Completed")})
 
-            })
     }
 
-    fun getSearchRepos(): LiveData<ArrayList<Repository>>{
+    //                listRepo.postValue(it.items)
+
+    fun getSearchRepos(): MutableLiveData<List<Repository>> {
         return listRepo;
     }
 }

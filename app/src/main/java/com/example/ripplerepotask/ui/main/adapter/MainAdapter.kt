@@ -12,7 +12,7 @@ class MainAdapter(private val list: ArrayList<Repository>) : RecyclerView.Adapte
 
     var onItemClick : ((Repository) -> Unit)? = null
 
-    fun setRepoList(repos: ArrayList<Repository>){
+    fun setRepoList(repos: List<Repository>){
         list.clear()
         list.addAll(repos)
         notifyDataSetChanged()

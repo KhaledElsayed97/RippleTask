@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidProjects/RippleTask/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
         <entry key="..\:/AndroidProjects/RippleTaskRepo/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.153" />
         <entry key="..\:/AndroidProjects/RippleTaskRepo/app/src/main/res/drawable-hdpi/ic_action_name.xml" value="0.153" />
         <entry key="..\:/AndroidProjects/RippleTaskRepo/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.153" />
@@ -18,7 +17,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

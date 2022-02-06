@@ -1,7 +1,7 @@
 package com.example.domain.models
 
 data class RepoResponse(
-    val items: ArrayList<Repository>
+    val items: List<Repository>
 )
 
 data class Repository(

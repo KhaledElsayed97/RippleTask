@@ -1,6 +1,8 @@
 package com.example.data.apiservice
 
 import com.example.domain.models.RepoResponse
+import com.example.domain.models.Repository
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -16,5 +18,5 @@ interface ApiService {
     //@Headers("Authorization: token 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")
     fun getDataFromApi(
         @Query("q") query: String
-    ): Call<RepoResponse>
+    ): Observable<List<Repository>>
 }

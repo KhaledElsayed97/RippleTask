@@ -1,6 +1,6 @@
 package com.example.ripplerepotask.data.model
 
-import com.example.data.di.ApiServiceImpl
+import com.example.data.apiservice.ApiServiceImpl
 import com.example.data.repo.RemoteRepoImpl
 import com.example.domain.models.Owner
 import com.example.domain.models.RepoResponse
