@@ -7,8 +7,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.domain.models.Repository
 import com.example.ripplerepotask.databinding.ItemRepoBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MainAdapter(private val list: ArrayList<Repository>) : RecyclerView.Adapter<MainAdapter.RepoViewHolder>() {
+
+class MainAdapter @Inject constructor(var list: ArrayList<Repository>) : RecyclerView.Adapter<MainAdapter.RepoViewHolder>() {
 
     var onItemClick : ((Repository) -> Unit)? = null
 

@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RippleRepoTask">
         <activity
-            android:name=".ui.main.view.RepoDetailsActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.main.view.MainActivity"
             android:exported="true">
             <intent-filter>

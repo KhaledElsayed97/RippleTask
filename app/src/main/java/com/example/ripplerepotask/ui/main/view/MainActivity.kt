@@ -16,8 +16,9 @@ import com.example.ripplerepotask.databinding.FragmentRecyclerViewBinding
 import com.example.ripplerepotask.databinding.FragmentRepoDetailsBinding
 import com.example.ripplerepotask.ui.main.adapter.MainAdapter
 import com.example.ripplerepotask.ui.main.viewmodel.MainViewModel
-import org.koin.android.ext.android.inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity: AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding

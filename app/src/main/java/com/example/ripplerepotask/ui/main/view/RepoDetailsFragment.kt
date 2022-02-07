@@ -12,8 +12,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.ripplerepotask.R
 import com.example.ripplerepotask.databinding.FragmentRecyclerViewBinding
 import com.example.ripplerepotask.databinding.FragmentRepoDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RepoDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentRepoDetailsBinding

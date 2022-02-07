@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ripplerepotask.R
@@ -16,14 +17,15 @@ import com.example.ripplerepotask.databinding.ActivityMainBinding
 import com.example.ripplerepotask.databinding.FragmentRecyclerViewBinding
 import com.example.ripplerepotask.ui.main.adapter.MainAdapter
 import com.example.ripplerepotask.ui.main.viewmodel.MainViewModel
-import org.koin.android.ext.android.inject
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class RecyclerViewFragment : Fragment() {
+@AndroidEntryPoint
+class RecyclerViewFragment: Fragment() {
 
     private lateinit var binding : FragmentRecyclerViewBinding
-    private val  adapter : MainAdapter by inject()
-    private val viewModel : MainViewModel by inject()
+    private val viewModel : MainViewModel by viewModels()
+    @Inject lateinit var adapter:MainAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +52,7 @@ class RecyclerViewFragment : Fragment() {
             rvRepo.setHasFixedSize(true)
             rvRepo.adapter = adapter
 
-            adapter.onItemClick = { repository ->
+            adapter?.onItemClick = { repository ->
 
                 val action = RecyclerViewFragmentDirections.nextAction(
                     repository.name,
@@ -96,7 +98,7 @@ class RecyclerViewFragment : Fragment() {
     private fun setupObserver(){
         viewModel.getSearchRepos().observe(viewLifecycleOwner,{
             if (it!=null){
-                adapter.setRepoList(it)
+                adapter?.setRepoList(it)
                 showLoading(false)
             }
         })
