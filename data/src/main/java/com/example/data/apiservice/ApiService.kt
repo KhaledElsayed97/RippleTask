@@ -1,9 +1,8 @@
 package com.example.data.apiservice
 
-import com.example.domain.models.RepoResponse
+import com.example.domain.entities.RepoResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiService {

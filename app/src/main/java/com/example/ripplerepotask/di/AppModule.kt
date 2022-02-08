@@ -2,9 +2,13 @@ package com.example.ripplerepotask.di
 
 import android.content.Context
 import com.example.data.apiservice.ApiService
-import com.example.domain.models.Repository
+import com.example.data.repo.RemoteRepoImpl
+import com.example.domain.entities.Repository
+import com.example.domain.repositories.RemoteRepo
+import com.example.domain.usecases.GetReposUseCase
 import com.example.ripplerepotask.BaseApp
 import com.example.ripplerepotask.ui.main.adapter.MainAdapter
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +20,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+ class AppModule {
 
     @Singleton
     @Provides
@@ -55,6 +59,18 @@ class AppModule {
     @Singleton
     fun provideAdapter(list:ArrayList<Repository>): MainAdapter {
         return MainAdapter(list)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUseCase(apiRepo: RemoteRepo): GetReposUseCase {
+        return GetReposUseCase(apiRepo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReposRepository(apiService:ApiService) : RemoteRepoImpl{
+        return RemoteRepoImpl(apiService)
     }
 
 }

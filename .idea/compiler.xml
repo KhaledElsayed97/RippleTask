@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="RippleRepoTask.app" target="11" />
       <module name="RippleRepoTask.data" target="11" />
+      <module name="RippleRepoTask.domainn" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

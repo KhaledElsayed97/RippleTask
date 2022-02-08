@@ -1,4 +1,4 @@
-package com.example.domain.models
+package com.example.domain.entities
 
 data class RepoResponse(
     val items: ArrayList<Repository>

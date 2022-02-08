@@ -10,3 +10,4 @@ rootProject.name = "RippleRepoTask"
 include ':app'
 include ':domain'
 include ':data'
+

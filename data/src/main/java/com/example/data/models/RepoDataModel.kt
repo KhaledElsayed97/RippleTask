@@ -1,6 +1,6 @@
 package com.example.data.models
 
-import com.example.domain.models.Owner
+import com.example.domain.entities.Owner
 
 data class RepoDataModel(
 val name : String,

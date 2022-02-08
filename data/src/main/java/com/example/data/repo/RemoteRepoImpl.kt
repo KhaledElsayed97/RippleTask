@@ -1,14 +1,14 @@
 package com.example.data.repo
 
 
-import com.example.data.di.ApiServiceImpl
-import com.example.domain.models.RepoResponse
+import com.example.data.apiservice.ApiService
+import com.example.domain.entities.RepoResponse
 import com.example.domain.repositories.RemoteRepo
 import retrofit2.Call
+import javax.inject.Inject
 
-class RemoteRepoImpl (private val apiServiceImpl: ApiServiceImpl) : RemoteRepo {
-
-    override fun getRepos(query: String) : Call<RepoResponse> {
-        return apiServiceImpl.apiInstance.getDataFromApi(query)
+class RemoteRepoImpl @Inject constructor(private val apiInstance: ApiService) : RemoteRepo {
+    override suspend fun getRepos(query: String) : Call<RepoResponse> {
+        return apiInstance.getDataFromApi(query)
     }
 }
